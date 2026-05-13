@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+import core
 
 CAMINHO_SRC = Path(__file__).resolve().parents[1] / "src"
 sys.path.append(str(CAMINHO_SRC))

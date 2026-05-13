@@ -1,5 +1,3 @@
-# Arquivo: tests/test_pilha.py
-
 import sys
 from pathlib import Path
 
