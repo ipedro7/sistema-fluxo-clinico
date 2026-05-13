@@ -91,3 +91,9 @@ def quick_sort(dados, campo=None):
             iguais.append(item)
 
     return quick_sort(menores, campo) + iguais + quick_sort(maiores, campo)
+
+def bubble_sort(dados, campo=None):
+    raise NotImplementedError("O Bubble Sort ainda não foi implementado.")
+
+def merge_sort(dados, campo=None):
+    raise NotImplementedError("O Merge Sort ainda não foi implementado.")

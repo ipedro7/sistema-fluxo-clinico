@@ -272,37 +272,39 @@ def main():
 
         mostrar_linha()
 
-        if opcao == "1":
-            tela_cadastrar(service)
-        elif opcao == "2":
-            tela_listar(service)
-        elif opcao == "3":
-            tela_buscar(service)
-        elif opcao == "4":
-            tela_remover(service)
-        elif opcao == "5":
-            tela_adicionar_fila(service)
-        elif opcao == "6":
-            tela_ver_proximo(service)
-        elif opcao == "7":
-            tela_chamar_proximo(service)
-        elif opcao == "8":
-            tela_ver_fila(service)
-        elif opcao == "9":
-            tela_historico(service)
-        elif opcao == "10":
-            tela_remover_ultima_acao(service)
-        elif opcao == "11":
-            tela_carregar_arquivo(service)
-        elif opcao == "12":
-            tela_ordenar(service)
-        elif opcao == "13":
-            tela_dashboard(service)
-        elif opcao == "0":
-            print("Programa encerrado com sucesso.")
-            break
-        else:
-            print("Opção inválida. Tente novamente.")
+        match opcao:
+
+            case "1":
+                tela_cadastrar(service)
+            case "2":
+                tela_listar(service)
+            case "3":
+                tela_buscar(service)
+            case "4":
+                tela_remover(service)
+            case "5":
+                tela_adicionar_fila(service)
+            case "6":
+                tela_ver_proximo(service)
+            case "7":
+                tela_chamar_proximo(service)
+            case "8":
+                tela_ver_fila(service)
+            case "9":
+                tela_historico(service)
+            case "10":
+                tela_remover_ultima_acao(service)
+            case "11":
+                tela_carregar_arquivo(service)
+            case "12":
+                tela_ordenar(service)
+            case "13":
+                tela_dashboard(service)
+            case "0":
+                print("Programa encerrado com sucesso.")
+                break
+            case _:
+                print("Opção inválida. Tente novamente.")
 
         pausar()
 
