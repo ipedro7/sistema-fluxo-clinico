@@ -28,27 +28,28 @@ def mostrar_pacientes(pacientes):
     for paciente in pacientes:
         print(paciente)
 
-
-def mostrar_menu():
-    print()
-    print("=============================================")
-    print(" SISTEMA DE GESTÃO DE FLUXO CLÍNICO")
-    print("=============================================")
-    print("[1] Cadastrar paciente")
-    print("[2] Listar pacientes cadastrados")
-    print("[3] Buscar paciente por ID")
-    print("[4] Remover paciente do cadastro")
-    print("[5] Adicionar paciente à fila")
-    print("[6] Ver próximo paciente da fila")
-    print("[7] Chamar próximo paciente")
-    print("[8] Ver fila atual")
-    print("[9] Ver histórico de ações")
-    print("[10] Remover última ação do histórico")
-    print("[11] Carregar pacientes do arquivo")
-    print("[12] Ordenar pacientes para relatório")
-    print("[13] Dashboard de desempenho")
-    print("[0] Sair")
-
+menu = """
+    |=============================================|
+    |    SISTEMA DE GESTÃO DE FLUXO CLÍNICO       |
+    |=============================================|
+    |                                             |
+    |   [1] Cadastrar paciente                    |
+    |   [2] Listar pacientes cadastrados          |
+    |   [3] Buscar paciente por ID                |
+    |   [4] Remover paciente do cadastro          |
+    |   [5] Adicionar paciente à fila             |
+    |   [6] Ver próximo paciente da fila          |
+    |   [7] Chamar próximo paciente               |
+    |   [8] Ver fila atual                        |
+    |   [9] Ver histórico de ações                |
+    |   [10] Remover última ação do histórico     |
+    |   [11] Carregar pacientes do arquivo        |
+    |   [12] Ordenar pacientes para relatório     |
+    |   [13] Dashboard de desempenho              |
+    |   [0] Sair                                  |
+    |                                             |
+    |=============================================|
+"""
 
 def tela_cadastrar(service):
     print("\n=== Cadastro de Paciente ===")
@@ -267,8 +268,8 @@ def main():
     service = SistemaClinicoService()
 
     while True:
-        mostrar_menu()
-        opcao = input("Escolha uma opção: ")
+        print(menu)
+        opcao = input("                 Escolha uma opção: ")
 
         mostrar_linha()
 
