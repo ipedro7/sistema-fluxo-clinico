@@ -93,7 +93,68 @@ def quick_sort(dados, campo=None):
     return quick_sort(menores, campo) + iguais + quick_sort(maiores, campo)
 
 def bubble_sort(dados, campo=None):
-    raise NotImplementedError("O Bubble Sort ainda não foi implementado.")
+    # Bubble Sort:
+    # compara os itens lado a lado
+    # e troca quando estão fora de ordem.
+    # Complexidade: O(n²)
+
+    lista = dados[:]
+    tamanho = len(lista)
+
+    for i in range(tamanho - 1):
+        houve_troca = False
+
+        for j in range(tamanho - 1 - i):
+            if pegar_valor(lista[j], campo) > pegar_valor(lista[j + 1], campo):
+                lista[j], lista[j + 1] = lista[j + 1], lista[j]
+                houve_troca = True
+
+        # Se não aconteceu nenhuma troca,
+        # a lista já está ordenada
+        if not houve_troca:
+            break
+
+    return lista
+
 
 def merge_sort(dados, campo=None):
-    raise NotImplementedError("O Merge Sort ainda não foi implementado.")
+    # Merge Sort:
+    # divide a lista em partes menores,
+    # ordena cada parte e depois junta tudo.
+    # Complexidade: O(n log n)
+
+    lista = dados[:]
+
+    if len(lista) <= 1:
+        return lista
+
+    meio = len(lista) // 2
+
+    esquerda = merge_sort(lista[:meio], campo)
+    direita = merge_sort(lista[meio:], campo)
+
+    return juntar_listas(esquerda, direita, campo)
+
+
+def juntar_listas(esquerda, direita, campo=None):
+    resultado = []
+    i = 0
+    j = 0
+
+    while i < len(esquerda) and j < len(direita):
+        if pegar_valor(esquerda[i], campo) <= pegar_valor(direita[j], campo):
+            resultado.append(esquerda[i])
+            i += 1
+        else:
+            resultado.append(direita[j])
+            j += 1
+
+    while i < len(esquerda):
+        resultado.append(esquerda[i])
+        i += 1
+
+    while j < len(direita):
+        resultado.append(direita[j])
+        j += 1
+
+    return resultado
