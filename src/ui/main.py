@@ -42,7 +42,7 @@ menu = """
     |   [7] Chamar próximo paciente               |
     |   [8] Ver fila atual                        |
     |   [9] Ver histórico de ações                |
-    |   [10] Remover última ação do histórico     |
+    |   [10] Desfazer ultima ação                 |
     |   [11] Carregar pacientes do arquivo        |
     |   [12] Ordenar pacientes para relatório     |
     |   [13] Dashboard de desempenho              |
@@ -168,7 +168,7 @@ def tela_historico(service):
         return
 
     for indice, acao in enumerate(historico, start=1):
-        print(f"{indice}. {acao}")
+        print(acao)
 
 
 def tela_remover_ultima_acao(service):

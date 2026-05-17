@@ -46,6 +46,31 @@ class Fila:
         self.tamanho -= 1
         return paciente
 
+    def remover_por_id(self, id_paciente):
+        atual = self.inicio
+        anterior = None
+
+        while atual is not None:
+            if atual.dado.id_paciente == id_paciente:
+                if anterior is None:
+                    self.inicio = atual.proximo
+                else:
+                    anterior.proximo = atual.proximo
+                
+                if atual.proximo is None:
+                    self.fim = anterior
+
+                if self.inicio is None:
+                    self.fim = None
+
+                self.tamanho -= 1
+                return atual.dado
+
+            anterior = atual
+            atual = atual.proximo
+
+        return None
+
     def frente(self):
         # Mostra quem é o próximo sem tirar da fila
         if self.esta_vazia():

@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Guia pessoal de melhorias
+doc/guia_melhorias.md

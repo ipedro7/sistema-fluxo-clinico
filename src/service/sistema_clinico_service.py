@@ -2,6 +2,7 @@
 # Esse arquivo é a camada de serviço.
 # Ele junta as estruturas e organiza as ações do sistema.
 
+from core.acao import Acao
 from core.paciente import Paciente
 from core.lista_encadeada import ListaEncadeada
 from core.fila import Fila
@@ -33,7 +34,7 @@ class SistemaClinicoService:
         paciente = Paciente(id_paciente, nome, idade)
         self.pacientes.inserir(paciente)
 
-        self.historico.push(f"Paciente {paciente.nome} cadastrado")
+        self.historico.push(Acao("Cadastro", paciente))
 
         return True, f"Paciente {paciente.nome} cadastrado com sucesso."
 
@@ -49,7 +50,7 @@ class SistemaClinicoService:
         if paciente is None:
             return False, "ERRO: paciente não encontrado."
 
-        self.historico.push(f"Paciente {paciente.nome} removido do cadastro")
+        self.historico.push(Acao("Remoção", paciente))
         return True, f"Paciente {paciente.nome} removido com sucesso."
 
     def adicionar_paciente_na_fila(self, id_paciente):
@@ -72,7 +73,7 @@ class SistemaClinicoService:
         if paciente is None:
             return False, "ERRO: fila vazia. Não há pacientes para chamar."
 
-        self.historico.push(f"Paciente {paciente.nome} chamado para atendimento")
+        self.historico.push(Acao("Chamado", paciente))
 
         return True, f"Próximo paciente chamado: {paciente.nome}."
 
@@ -90,6 +91,16 @@ class SistemaClinicoService:
 
         if acao is None:
             return False, "ERRO: histórico vazio. Não há ação para remover."
+
+        match acao.tipo:
+            case "Cadastro":
+                self.pacientes.remover(acao.paciente.id)
+            case "Remoção":
+                self.pacientes.inserir(acao.paciente)
+            case "Enfileiramento":
+                self.fila.remover_por_id(acao.paciente.id)
+            case "Chamado":
+                self.fila.enqueue(acao.paciente)
 
         return True, f"Última ação removida do histórico: {acao}"
 
@@ -151,7 +162,7 @@ class SistemaClinicoService:
             else:
                 return False, "Algoritmo inválido.", []
 
-            self.historico.push(f"Relatório ordenado por {campo} usando {algoritmo}")
+            self.historico.push(Acao("Ordenação", paciente))
 
             return True, "Pacientes ordenados com sucesso.", ordenados
 
