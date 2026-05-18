@@ -51,7 +51,7 @@ class Fila:
         anterior = None
 
         while atual is not None:
-            if atual.dado.id_paciente == id_paciente:
+            if atual.dado.id == id_paciente:
                 if anterior is None:
                     self.inicio = atual.proximo
                 else:

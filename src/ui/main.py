@@ -10,6 +10,7 @@ CAMINHO_SRC = Path(__file__).resolve().parents[1]
 sys.path.append(str(CAMINHO_SRC))
 
 from service.sistema_clinico_service import SistemaClinicoService
+from core.benchmark import executar_benchmark
 
 
 def mostrar_linha():
@@ -46,6 +47,7 @@ menu = """
     |   [11] Carregar pacientes do arquivo        |
     |   [12] Ordenar pacientes para relatório     |
     |   [13] Dashboard de desempenho              |
+    |   [14] Benchmark de algoritmos              |
     |   [0] Sair                                  |
     |                                             |
     |=============================================|
@@ -264,6 +266,21 @@ def tela_dashboard(service):
     print(f"Status do histórico: {dados['status_historico']}")
 
 
+
+def tela_benchmark(service):
+    print("\n=== Benchmark de Algoritmos de Ordenação ===")
+    print("Executando benchmark com 100, 1000 e 5000 pacientes...")
+    print("Aguarde...\n")
+
+    resultados = executar_benchmark()
+
+    for qtd, algoritmos in resultados.items():
+        print(f"--- {qtd} pacientes ---")
+        for nome_algo, tempo in algoritmos.items():
+            print(f"  {nome_algo}{tempo:.6f} segundos")
+        print()
+
+
 def main():
     service = SistemaClinicoService()
 
@@ -301,6 +318,8 @@ def main():
                 tela_ordenar(service)
             case "13":
                 tela_dashboard(service)
+            case "14":
+                tela_benchmark(service)
             case "0":
                 print("Programa encerrado com sucesso.")
                 break

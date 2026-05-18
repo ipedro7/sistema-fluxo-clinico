@@ -60,7 +60,7 @@ class SistemaClinicoService:
             return False, "ERRO: paciente não encontrado no cadastro."
 
         self.fila.enqueue(paciente)
-        self.historico.push(f"Paciente {paciente.nome} entrou na fila")
+        self.historico.push(Acao("Enfileiramento", paciente))
 
         return True, f"Paciente {paciente.nome} adicionado à fila."
 
@@ -162,7 +162,7 @@ class SistemaClinicoService:
             else:
                 return False, "Algoritmo inválido.", []
 
-            self.historico.push(Acao("Ordenação", paciente))
+            self.historico.push(f"Ordenação por {campo} usando {algoritmo}")
 
             return True, "Pacientes ordenados com sucesso.", ordenados
 
