@@ -269,7 +269,7 @@ def tela_dashboard(service):
 
 def tela_benchmark(service):
     print("\n=== Benchmark de Algoritmos de Ordenação ===")
-    print("Executando benchmark com 100, 1000 e 5000 pacientes...")
+    print("Executando benchmark com 100, 1000 e 5000 pacientes, embaralhadas por ID...")
     print("Aguarde...\n")
 
     resultados = executar_benchmark()

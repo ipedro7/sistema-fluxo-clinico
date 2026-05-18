@@ -29,6 +29,7 @@ def executar_benchmark():
 
     for qtd in quantidades:
         pacientes = gerar_paciente(qtd)
+        random.shuffle(pacientes)
         resultados[qtd] = {}
 
         for nome_algo, funcao in algoritmos.items():
